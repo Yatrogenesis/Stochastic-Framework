@@ -1,0 +1,54 @@
+[package]
+name = "lotto-analyzer"
+version = "1.0.0"
+edition = "2021"
+authors = ["Francisco Molina <pako.molina@gmail.com>"]
+description = "Advanced Lottery Analysis Framework - Multi-dimensional Mathematical Analysis Engine"
+license = "MIT"
+
+[[bin]]
+name = "lotto-analyzer"
+path = "src/main.rs"
+
+[dependencies]
+# Data loading and parsing
+csv = "1.3"
+calamine = "0.25"  # For Excel files (XLS, XLSX)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rusqlite = { version = "0.32", features = ["bundled"] }
+sqlx = { version = "0.8", features = ["runtime-tokio-native-tls", "sqlite", "postgres", "mysql"] }
+tokio = { version = "1", features = ["full"] }
+
+# Mathematical analysis
+nalgebra = "0.33"  # Linear algebra
+statrs = "0.17"    # Statistical functions
+ndarray = "0.16"   # N-dimensional arrays
+num-traits = "0.2"
+num-complex = "0.4"
+special = "0.11"   # Special functions (gamma, beta, etc.)
+
+# UI and persistence
+eframe = "0.29"    # egui framework for desktop UI
+egui = "0.29"
+egui_extras = { version = "0.29" }
+rfd = "0.15"       # File dialogs
+sled = "0.34"      # Embedded database for persistence
+
+# Utilities
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.11"
+chrono = "0.4"
+rayon = "1.10"     # Parallel processing
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.5"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
