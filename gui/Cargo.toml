@@ -1,0 +1,21 @@
+[package]
+name = "stochastic-gui"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Desktop GUI for STOCHASTIC framework"
+
+[[bin]]
+name = "stochastic-gui"
+path = "src/main.rs"
+
+[dependencies]
+stochastic-core = { path = "../crates/stochastic-core" }
+eframe = { workspace = true }
+egui = { workspace = true }
+egui_extras = { workspace = true }
+egui_plot = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }

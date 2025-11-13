@@ -1,0 +1,18 @@
+[package]
+name = "stochastic-ergodic"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Ergodic theory (Birkhoff theorem, mixing) for STOCHASTIC framework"
+
+[dependencies]
+stochastic-core = { path = "../stochastic-core" }
+statrs = { workspace = true }
+ndarray = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+approx = { workspace = true }
