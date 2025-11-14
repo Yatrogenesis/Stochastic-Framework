@@ -34,7 +34,7 @@
 //! - Gao, S., Ver Steeg, G., & Galstyan, A. (2015). "Efficient Estimation of Mutual Information for Strongly Dependent Variables"
 //! - Khan, S., et al. (2007). "Relative performance of mutual information estimation methods for quantifying the dependence among short and noisy data"
 
-use stochastic_core::{AnalysisResult, StochasticAnalyzer, StochasticError, TimeSeries, Domain};
+use stochastic_core::{AnalysisResult, StochasticAnalyzer, StochasticError, TimeSeries};
 use std::collections::HashMap;
 
 /// Configuration for Mutual Information calculation
@@ -372,6 +372,7 @@ impl StochasticAnalyzer for MutualInformation {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use stochastic_core::Domain;
     use approx::assert_relative_eq;
 
     #[test]

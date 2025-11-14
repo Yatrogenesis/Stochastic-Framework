@@ -27,7 +27,6 @@
 //! - Razali, N.M., & Wah, Y.B. (2011). "Power comparisons of Shapiro-Wilk, KS, Lilliefors and AD tests"
 
 use stochastic_core::{AnalysisResult, StochasticAnalyzer, StochasticError, TimeSeries, Domain};
-use std::f64::consts::PI;
 
 /// Configuration for Anderson-Darling test
 #[derive(Debug, Clone)]

@@ -31,10 +31,9 @@
 //! - Robert, C.P., & Casella, G. (2004). "Monte Carlo Statistical Methods"
 //! - Brooks, S., et al. (2011). "Handbook of Markov Chain Monte Carlo"
 
-use stochastic_core::{AnalysisResult, StochasticAnalyzer, StochasticError, TimeSeries};
-use rand::Rng;
-use rand::distributions::{Distribution, Normal as RandNormal};
-use std::f64::consts::PI;
+use stochastic_core::StochasticError;
+use rand::{Rng, SeedableRng};
+use rand_distr::{Distribution, Normal as RandNormal};
 
 /// Proposal distribution type
 #[derive(Debug, Clone, Copy)]
@@ -142,7 +141,8 @@ impl MetropolisHastings {
             ProposalType::RandomWalk { step_size } => {
                 current.iter()
                     .map(|&x| {
-                        let normal = RandNormal::new(0.0, step_size);
+                        let normal = RandNormal::new(0.0, step_size)
+                            .expect("Failed to create Normal distribution");
                         x + normal.sample(rng)
                     })
                     .collect()
@@ -150,7 +150,8 @@ impl MetropolisHastings {
             ProposalType::Independent { scale } => {
                 (0..current.len())
                     .map(|_| {
-                        let normal = RandNormal::new(0.0, scale);
+                        let normal = RandNormal::new(0.0, scale)
+                            .expect("Failed to create Normal distribution");
                         normal.sample(rng)
                     })
                     .collect()
@@ -353,6 +354,7 @@ impl Default for MetropolisHastings {
 mod tests {
     use super::*;
     use approx::assert_relative_eq;
+    use std::f64::consts::PI;
 
     /// Simple 1D Gaussian target for testing
     struct GaussianTarget {

@@ -286,7 +286,7 @@ impl DFA {
 
         // Backward direction (for remaining data)
         if n % box_size >= box_size / 2 {
-            let remaining = n % box_size;
+            let _remaining = n % box_size;
             let start = n - box_size;
             let segment = integrated.slice(ndarray::s![start..]);
             total_variance += self.detrend_segment(segment);
@@ -363,7 +363,7 @@ impl DFA {
         }
 
         // Step 4: Fit line to log-log plot → slope = Hurst exponent
-        let log_boxes_arr = Array1::from_vec(log_boxes.clone());
+        let _log_boxes_arr = Array1::from_vec(log_boxes.clone());
         let log_fluct_arr = Array1::from_vec(log_fluctuations.clone());
 
         let (coeffs, r_squared) = self.polynomial_fit(log_fluct_arr.view(), 1);

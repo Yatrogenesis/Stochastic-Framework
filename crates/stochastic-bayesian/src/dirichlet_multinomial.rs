@@ -39,9 +39,9 @@
 //! - Minka, T. (2000). "Estimating a Dirichlet distribution"
 
 use stochastic_core::{AnalysisResult, StochasticAnalyzer, StochasticError, TimeSeries, Domain};
-use statrs::distribution::{Dirichlet, Continuous};
+use statrs::distribution::Dirichlet;
 use statrs::function::gamma::ln_gamma;
-use rand::Rng;
+use rand::SeedableRng;
 use rand::distributions::Distribution;
 use std::collections::HashMap;
 
@@ -173,11 +173,14 @@ impl DirichletMultinomial {
             rand::rngs::StdRng::from_entropy()
         };
 
-        let dirichlet = Dirichlet::new(posterior_alpha)
+        let dirichlet = Dirichlet::new(posterior_alpha.to_vec())
             .expect("Failed to create Dirichlet distribution");
 
         (0..num_samples)
-            .map(|_| dirichlet.sample(&mut rng))
+            .map(|_| {
+                let sample = dirichlet.sample(&mut rng);
+                sample.iter().copied().collect()
+            })
             .collect()
     }
 
@@ -276,7 +279,7 @@ impl DirichletMultinomial {
 
         // Add category-specific metrics
         for (i, &cat) in categories.iter().enumerate() {
-            let (lower, mean, upper) = intervals[i];
+            let (lower, _mean, upper) = intervals[i];
             result = result
                 .with_metric(&format!("category_{}_count", cat), counts[i] as f64)
                 .with_metric(&format!("category_{}_posterior_mean", cat), posterior_mean[i])

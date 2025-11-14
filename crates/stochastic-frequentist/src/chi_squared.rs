@@ -23,7 +23,6 @@
 
 use stochastic_core::{AnalysisResult, StochasticAnalyzer, StochasticError, TimeSeries, Domain};
 use statrs::distribution::{ChiSquared, ContinuousCDF};
-use std::collections::HashMap;
 
 /// Configuration for Chi-squared test
 #[derive(Debug, Clone)]
@@ -124,7 +123,7 @@ impl ChiSquaredTest {
                 // Uniform: each bin has equal expected frequency
                 vec![n as f64 / num_bins as f64; num_bins]
             }
-            ExpectedDistribution::Normal { mean, std_dev } => {
+            ExpectedDistribution::Normal { mean: _, std_dev: _ } => {
                 // For normal distribution, would integrate CDF over bin ranges
                 // Simplified implementation: assume uniform for now
                 // TODO: Implement proper normal distribution binning
@@ -178,7 +177,7 @@ impl ChiSquaredTest {
 
         // Compute p-value
         let chi_sq_dist = ChiSquared::new(dof).map_err(|e| {
-            StochasticError::computation(format!("Failed to create chi-squared distribution: {}", e))
+            StochasticError::analysis_failed(format!("Failed to create chi-squared distribution: {}", e))
         })?;
 
         let p_value = 1.0 - chi_sq_dist.cdf(chi_squared_stat);

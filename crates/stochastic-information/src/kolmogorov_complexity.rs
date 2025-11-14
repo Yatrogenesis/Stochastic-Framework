@@ -111,11 +111,11 @@ impl KolmogorovComplexity {
         let mut encoder = DeflateEncoder::new(Vec::new(), compression);
 
         encoder.write_all(data).map_err(|e| {
-            StochasticError::computation(format!("Compression failed: {}", e))
+            StochasticError::analysis_failed(format!("Compression failed: {}", e))
         })?;
 
         encoder.finish().map_err(|e| {
-            StochasticError::computation(format!("Compression finalization failed: {}", e))
+            StochasticError::analysis_failed(format!("Compression finalization failed: {}", e))
         })
     }
 
