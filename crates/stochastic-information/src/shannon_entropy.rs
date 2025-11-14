@@ -420,7 +420,9 @@ mod tests {
 
     #[test]
     fn test_log_base_nats() {
-        let values = vec![0.0, 1.0, 0.0, 1.0]; // Binary
+        let values = vec![0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+                          0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+                          0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0]; // Binary
         let data = TimeSeries::from_values(values).with_domain(Domain::Discrete);
 
         let config = ShannonEntropyConfig {
@@ -526,6 +528,6 @@ mod tests {
 
         let result = analyzer.analyze(&data);
         assert!(result.is_err());
-        assert!(result.unwrap_err().to_string().contains("insufficient"));
+        assert!(result.unwrap_err().to_string().contains("Insufficient"));
     }
 }

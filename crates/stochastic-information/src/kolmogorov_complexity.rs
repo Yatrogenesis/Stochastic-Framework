@@ -436,7 +436,7 @@ mod tests {
 
         let result = analyzer.analyze(&data);
         assert!(result.is_err());
-        assert!(result.unwrap_err().to_string().contains("insufficient"));
+        assert!(result.unwrap_err().to_string().contains("Insufficient"));
     }
 
     #[test]

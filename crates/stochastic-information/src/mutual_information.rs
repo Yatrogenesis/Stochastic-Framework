@@ -455,8 +455,16 @@ mod tests {
 
     #[test]
     fn test_unequal_length_error() {
-        let x = TimeSeries::from_values(vec![1.0, 2.0, 3.0]);
-        let y = TimeSeries::from_values(vec![1.0, 2.0]);
+        // x has 30 elements, y has 35 elements (both > required_sample_size)
+        let x_vec = vec![1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0,
+                         1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0,
+                         1.0, 2.0, 3.0, 0.0, 1.0, 2.0, 3.0, 0.0, 1.0, 2.0];
+        let y_vec = vec![1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0,
+                         1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0,
+                         1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0,
+                         1.0, 2.0, 1.0, 2.0, 1.0];  // 35 elements (different length)
+        let x = TimeSeries::from_values(x_vec);
+        let y = TimeSeries::from_values(y_vec);
 
         let analyzer = MutualInformation::new();
         let result = analyzer.calculate(&x, &y);
@@ -474,7 +482,7 @@ mod tests {
         let result = analyzer.calculate(&x, &y);
 
         assert!(result.is_err());
-        assert!(result.unwrap_err().to_string().contains("insufficient"));
+        assert!(result.unwrap_err().to_string().contains("Insufficient"));
     }
 
     #[test]
@@ -534,7 +542,9 @@ mod tests {
 
     #[test]
     fn test_log_base_nats() {
-        let x: Vec<f64> = vec![0.0, 1.0, 0.0, 1.0]; // Binary
+        let x: Vec<f64> = vec![0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+                               0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0,
+                               0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0]; // Binary
         let y = x.clone();
 
         let x_data = TimeSeries::from_values(x).with_domain(Domain::Discrete);

@@ -443,7 +443,7 @@ mod tests {
 
     #[test]
     fn test_log_evidence() {
-        let values = vec![0.0, 1.0, 0.0, 1.0];
+        let values = vec![0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0];
         let data = TimeSeries::from_values(values).with_domain(Domain::Discrete);
 
         let model = DirichletMultinomial::new().with_seed(42);
@@ -457,7 +457,7 @@ mod tests {
 
     #[test]
     fn test_posterior_variance() {
-        let values = vec![0.0, 1.0, 2.0, 0.0, 1.0, 2.0];
+        let values = vec![0.0, 1.0, 2.0, 0.0, 1.0, 2.0, 0.0, 1.0, 2.0, 0.0];
         let data = TimeSeries::from_values(values).with_domain(Domain::Discrete);
 
         let model = DirichletMultinomial::new().with_seed(42);
@@ -480,12 +480,12 @@ mod tests {
 
         let result = model.analyze(&data);
         assert!(result.is_err());
-        assert!(result.unwrap_err().to_string().contains("insufficient"));
+        assert!(result.unwrap_err().to_string().contains("Insufficient"));
     }
 
     #[test]
     fn test_continuous_data_rejection() {
-        let data = TimeSeries::from_values(vec![1.5, 2.7, 3.9]).with_domain(Domain::Continuous);
+        let data = TimeSeries::from_values(vec![1.5, 2.7, 3.9, 4.2, 5.1, 6.3, 7.8, 8.4, 9.2, 10.5]).with_domain(Domain::Continuous);
         let model = DirichletMultinomial::new();
 
         let result = model.analyze(&data);
@@ -517,7 +517,7 @@ mod tests {
 
     #[test]
     fn test_reproducibility_with_seed() {
-        let values = vec![0.0, 1.0, 2.0, 0.0, 1.0, 2.0];
+        let values = vec![0.0, 1.0, 2.0, 0.0, 1.0, 2.0, 0.0, 1.0, 2.0, 0.0];
         let data = TimeSeries::from_values(values.clone()).with_domain(Domain::Discrete);
 
         let model1 = DirichletMultinomial::new().with_seed(123).with_samples(100);
