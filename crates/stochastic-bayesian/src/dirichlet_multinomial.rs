@@ -167,6 +167,12 @@ impl DirichletMultinomial {
 
     /// Sample from posterior Dirichlet distribution
     fn sample_posterior(&self, posterior_alpha: &[f64], num_samples: usize) -> Vec<Vec<f64>> {
+        // Special case: single category (Dirichlet requires at least 2 dimensions)
+        if posterior_alpha.len() == 1 {
+            // For single category, probability is deterministically 1.0
+            return vec![vec![1.0]; num_samples];
+        }
+
         let mut rng = if let Some(seed) = self.config.seed {
             rand::rngs::StdRng::seed_from_u64(seed)
         } else {
