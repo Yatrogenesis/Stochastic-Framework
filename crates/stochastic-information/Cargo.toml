@@ -13,6 +13,7 @@ statrs = { workspace = true }
 ndarray = { workspace = true }
 serde = { workspace = true }
 thiserror = { workspace = true }
+flate2 = "1.0"  # For Kolmogorov Complexity approximation via DEFLATE compression
 
 [dev-dependencies]
 approx = { workspace = true }

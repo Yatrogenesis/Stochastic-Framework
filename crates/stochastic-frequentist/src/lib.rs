@@ -4,8 +4,10 @@
 
 pub mod chi_squared;
 pub mod kolmogorov_smirnov;
+pub mod anderson_darling;
 
 pub use chi_squared::ChiSquaredTest;
 pub use kolmogorov_smirnov::KolmogorovSmirnovTest;
+pub use anderson_darling::AndersonDarlingTest;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
