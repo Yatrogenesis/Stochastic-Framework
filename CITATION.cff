@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "STOCHASTIC Framework: Multi-Framework Analysis for Stochastic Process Pattern Detection"
+version: 1.0.0
+date-released: "2025-01-13"
+url: "https://github.com/Yatrogenesis/STOCHASTIC-Framework"
+repository-code: "https://github.com/Yatrogenesis/STOCHASTIC-Framework"
+license: MIT
+authors:
+  - family-names: "Molina"
+    given-names: "Francisco"
+    email: "pako.molina@gmail.com"
+    orcid: "https://orcid.org/0009-0008-6093-8267"
+keywords:
+  - stochastic processes
+  - time series analysis
+  - statistical analysis
+  - chaos theory
+  - fractal analysis
+  - quantum information
+  - topological data analysis
+  - Bayesian inference
+  - ergodic theory
+  - consciousness AI
+abstract: >
+  STOCHASTIC (Stochastic Testing and Order CHassis Analysis for Systematic
+  Temporal Inference and Classification) is a comprehensive Rust framework
+  for detecting emergent order in stochastic processes using 13 independent
+  mathematical methodologies. Developed as part of consciousness AI research,
+  it validates pattern detection on certified random number generators before
+  application to neural dynamics and quantum systems.
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Molina"
+      given-names: "Francisco"
+      email: "pako.molina@gmail.com"
+      orcid: "https://orcid.org/0009-0008-6093-8267"
+  title: "STOCHASTIC Framework: Multi-Framework Analysis for Stochastic Process Pattern Detection"
+  version: 1.0.0
+  year: 2025
+  url: "https://github.com/Yatrogenesis/STOCHASTIC-Framework"
