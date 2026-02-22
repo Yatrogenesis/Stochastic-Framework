@@ -1,0 +1,17 @@
+[package]
+name = "stochastic-galois"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Galois field theory (GF(p), quadratic residues) for STOCHASTIC framework"
+
+[dependencies]
+stochastic-core = { path = "../stochastic-core" }
+num-traits = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+approx = { workspace = true }

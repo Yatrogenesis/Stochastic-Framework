@@ -1,0 +1,19 @@
+[package]
+name = "stochastic-topology"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Topological data analysis (persistent homology, Betti numbers) for STOCHASTIC framework"
+
+[dependencies]
+stochastic-core = { path = "../stochastic-core" }
+nalgebra = { workspace = true }
+ndarray = { workspace = true }
+petgraph = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+approx = { workspace = true }

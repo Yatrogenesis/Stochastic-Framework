@@ -1,0 +1,18 @@
+[package]
+name = "stochastic-fractal"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Multifractal analysis (DFA, Hurst exponent) for STOCHASTIC framework"
+
+[dependencies]
+stochastic-core = { path = "../stochastic-core" }
+ndarray = { workspace = true }
+ndarray-stats = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+approx = { workspace = true }
